@@ -1,6 +1,6 @@
 /**
  * Generated from
- * https://github.com/osamaq/react-native-template-osamaq
+ * https://github.com/duniapay/react-native-template-duniapay
  *
  */
 import * as Sentry from "@sentry/react-native"

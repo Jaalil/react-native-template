@@ -40,7 +40,7 @@ __DEV__ && client.addMonitor(console.log)
 
 // API Paths
 const paths = {
-    getRepoReadme: () => "/repos/osamaq/react-native-template/readme",
+    getRepoReadme: () => "/repos/duniapay/react-native-template/readme",
 }
 
 // API implementation

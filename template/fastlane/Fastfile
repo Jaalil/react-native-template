@@ -1,5 +1,5 @@
 # For basics, see
-# https://github.com/osamaq/reactnative-fastlane-appcenter
+# https://github.com/duniapay/reactnative-fastlane-appcenter
 
 # -------------Android Build & Deploy-------------#
 platform :android do
@@ -59,7 +59,7 @@ end
 # -------------iOS Sign, Build & Deploy-------------#
 platform :ios do
   # You need to configure singing for iOS
-  # https://github.com/osamaq/reactnative-fastlane-appcenter#signing
+  # https://github.com/duniapay/reactnative-fastlane-appcenter#signing
   desc 'Set up certs and profiles for iOS.'
   lane :certificates do
     register_devices(

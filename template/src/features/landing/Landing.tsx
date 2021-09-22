@@ -49,7 +49,7 @@ const Landing = ({ navigation }: Props) => {
       >
         <Header />
         <Text style={styles.templateTitle} testID="title">
-          @osamaq/react-native-template
+          @duniapay/react-native-template
         </Text>
         {global.HermesInternal == null ? null : (
           <View style={styles.engine}>

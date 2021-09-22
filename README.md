@@ -67,7 +67,7 @@ Create a new project using the template.
 ### RN 0.63.2
 
 ```bash
-$ npx react-native init MyApp --template @osamaq/react-native-template
+$ npx react-native init MyApp --template @duniapay/react-native-template
 ```
 
 ## Optional Steps

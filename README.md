@@ -40,6 +40,7 @@ Preconfigured with
 - [FastImage](https://github.com/DylanVann/react-native-fast-image) its more performant
 - [Detox](https://github.com/wix/Detox) for e2e.
 - [Mirage JS](https://miragejs.com/) the easiest way to mock APIs.
+- [Conventionnal Commit](https://www.conventionalcommits.org/en/v1.0.0/) to add meaning to our commit messages
 - [Fastlane](http://fastlane.tools/) for automation.
 - handy npm scripts.
 

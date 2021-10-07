@@ -13,7 +13,7 @@ jobs:
         with:
           ruby-version: '2.7'
       - run: gem install bundler
-      - run: cd MyApp/
+      - run: cd MyApp
       - run: ls
 #       - run: npm install
 #       - run: bundle config set --local path 'vendor/bundle'

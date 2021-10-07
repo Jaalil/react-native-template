@@ -14,7 +14,8 @@ jobs:
           ruby-version: '2.7'
       - run: gem install bundler
       - run: cd MyApp/
-      - run: npm install
-      - run: bundle config set --local path 'vendor/bundle'
-      - run: bundle install
-      - run: bundle exec fastlane android deploy_production bundle:true
+      - run: ls
+#       - run: npm install
+#       - run: bundle config set --local path 'vendor/bundle'
+#       - run: bundle install
+#       - run: bundle exec fastlane android deploy_production bundle:true

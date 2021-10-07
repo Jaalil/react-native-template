@@ -5,55 +5,49 @@
 platform :android do
   # For android, you should setup signing for release builds.
   # Currently, the default debug keystore is used. 
-  # desc 'Build the staging release APK.'
-  # private_lane :build_staging do
-  #   gradle(task: 'clean', project_dir: 'android/')
-  #   sh("npm", "run", "make-apk:stagingRelease")
-  # end
 
   desc 'Build the production release APK.'
-  private_lane :build_production do
+  private_lane :build_production do |options|
     gradle(task: 'clean', project_dir: 'android/')
-    # sh("npm", "run", "make-apk:productionRelease")
-    gradle(task: 'assemble', build_type: 'release', project_dir: 'android/')
+
+    if options[:bundle]
+      gradle(task: 'bundle', build_type: 'release', project_dir: 'android/')
+    else
+      gradle(task: 'assemble', build_type: 'release', project_dir: 'android/')
+    end
   end
 
-  # desc 'Upload the release APK to App Center.'
-  # private_lane :upload do |options|
-  #   release_notes = options[:notes]
-  #   appcenter_upload(
-  #       api_token: ENV["APPCENTER_API_TOKEN"],
-  #       owner_name: ENV["APPCENTER_OWNER_NAME"],
-  #       app_name: ENV["APPCENTER_APP_NAME"],
-  #       apk: "./android/app/build/outputs/apk/release/app-release.apk",
-  #       notify_testers: ENV["NOTIFY_TESTERS"],
-  #       destinations: ENV["DESTINATIONS"],
-  #       release_notes: release_notes
-  #       )
-  # end
+  desc 'Upload the release app to App Center.'
+  private_lane :upload do |options|
+    release_notes = options[:notes]
+    
+    appcenter_upload(
+      api_token: ENV["APPCENTER_API_TOKEN"],
+      owner_name: ENV["APPCENTER_OWNER_NAME"],
+      app_name: ENV["APPCENTER_APP_NAME"],
+      apk: options[:bundle] ? "./android/app/build/outputs/bundle/release/app-release.aab"
+                            : "./android/app/build/outputs/apk/release/app-release.apk",
+      notify_testers: ENV["NOTIFY_TESTERS"],
+      destinations: ENV["DESTINATIONS"],
+      release_notes: release_notes
+    )
+  end
 
-  # desc 'Build, deploy staging Android.'
-  # lane :deploy_staging do
-  #   build_staging
-  #   upload
+  # desc 'Upload to Play Store'
+  # private lane :upload_play_store do
+
   # end
 
   desc 'Build, deploy production Android.'
-  lane :deploy_production do
-    build_production
-    # upload
+  lane :deploy_production do |options|
+    build_production(bundle: options[:bundle])
+    upload(bundle: options[:bundle])
   end
 
-  # desc 'Bump, badge, deploy staging Android.'
-  # lane :bump_badge_deploy_staging do
-  #   bump_badge
-  #   deploy_staging
-  # end
-  
-  desc 'Bump, badge, deploy production Android.'
+  desc 'Bump, badge, deploy production AAB.'
   lane :bump_badge_deploy_prod do
     bump_badge
-    deploy_production
+    deploy_production(bundle: true)
   end
 end
 

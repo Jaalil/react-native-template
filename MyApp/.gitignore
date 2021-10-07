@@ -56,6 +56,10 @@ buck-out/
 */fastlane/Preview.html
 */fastlane/screenshots
 
+# Ruby Bundler
+vendor/
+.bundle/
+
 # Bundle artifact
 *.jsbundle
 

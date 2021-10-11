@@ -35,7 +35,7 @@ jobs:
           echo MYAPP_RELEASE_STORE_PASSWORD=`echo -n $KEYSTORE_PASSWORD | base64 -d` >> ./android/gradle.properties
           echo MYAPP_RELEASE_KEY_PASSWORD=`echo -n $KEY_PASSWORD | base64 -d` >> ./android/gradle.properties
 
-          cat ./android/gradle/properties
+          cat ./android/gradle.properties
 
           # npm install
           # bundle config set --local path 'vendor/bundle'

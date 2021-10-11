@@ -18,7 +18,7 @@ jobs:
         env:
           KEYSTORE_FILE: ${{ secrets.KEYTORE_FILE}}
           KEY_ALIAS: ${{ secrets.KEY_ALIAS}}
-          KEYSTORE_PASSWORD: ${{ secrets.KEYTORE_PASSWORD}}
+          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD}}
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD}}
         working-directory: ./MyApp
         run: |

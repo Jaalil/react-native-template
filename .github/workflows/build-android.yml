@@ -16,7 +16,7 @@ jobs:
       - run: gem install bundler
       - name: Prepare android/gradle.properties and build
         env:
-          KEYSTORE_FILE: ${{ secrets.KEYTORE_FILE}}
+          KEYSTORE_FILE: ${{ secrets.KEYSTORE_FILE}}
           KEY_ALIAS: ${{ secrets.KEY_ALIAS}}
           KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD}}
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD}}

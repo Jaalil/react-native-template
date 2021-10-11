@@ -24,7 +24,7 @@ jobs:
           #Setup gradle properties
           KEYSTORE_PATH=./android/app/my-release-key.keystore
 
-          echo -n $KEYSTORE_FILE | base64 -d --output $KEYSTORE_PATH
+          echo -n $KEYSTORE_FILE | base64 -d > $KEYSTORE_PATH
 
           echo MYAPP_RELEASE_KEY_ALIAS=`echo -n $KEY_ALIAS | base 64 -d` >> ./android/gradle.properties
           echo MYAPP_RELEASE_STORE_PASSWORD=`echo -n $KEYSTORE_PASSWORD | base 64 -d` >> ./android/gradle.properties

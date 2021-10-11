@@ -1,4 +1,4 @@
-name: learn-github-actions
+name: build-android
 
 on: workflow_dispatch
 jobs:
@@ -13,8 +13,23 @@ jobs:
         with:
           ruby-version: '2.7'
       - run: gem install bundler
-      - working-directory: ./MyApp
+      - name: Prepare android/gradle.properties and build
+        env:
+          KEYSTORE_FILE: ${{ secrets.KEYTORE_FILE}}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS}}
+          KEYSTORE_PASSWORD: ${{ secrets.KEYTORE_PASSWORD}}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD}}
+        working-directory: ./MyApp
         run: |
+          #Setup gradle properties
+          KEYSTORE_PATH=./android/app/my-release-key.keystore
+
+          echo -n $KEYSTORE_FILE | base64 -d --output $KEYSTORE_PATH
+
+          echo MYAPP_RELEASE_KEY_ALIAS=`echo -n $KEY_ALIAS | base 64 -d` >> ./android/gradle.properties
+          echo MYAPP_RELEASE_STORE_PASSWORD=`echo -n $KEYSTORE_PASSWORD | base 64 -d` >> ./android/gradle.properties
+          echo MYAPP_RELEASE_KEY_PASSWORD=`echo -n $KEY_PASSWORD | base 64 -d` >> ./android/gradle.properties
+
           npm install
           bundle config set --local path 'vendor/bundle'
           bundle install

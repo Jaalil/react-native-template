@@ -4,6 +4,7 @@ on: workflow_dispatch
 jobs:
   deploy-AAB:
     runs-on: ubuntu-latest
+    environment: test
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
@@ -29,6 +30,8 @@ jobs:
           echo MYAPP_RELEASE_KEY_ALIAS=`echo -n $KEY_ALIAS | base64 -d` >> ./android/gradle.properties
           echo MYAPP_RELEASE_STORE_PASSWORD=`echo -n $KEYSTORE_PASSWORD | base64 -d` >> ./android/gradle.properties
           echo MYAPP_RELEASE_KEY_PASSWORD=`echo -n $KEY_PASSWORD | base64 -d` >> ./android/gradle.properties
+
+          cat ./android/gradle.properties
 
           npm install
           bundle config set --local path 'vendor/bundle'
